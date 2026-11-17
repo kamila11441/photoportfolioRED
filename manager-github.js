@@ -2,13 +2,6 @@ const GITHUB_API = "https://api.github.com";
 let repositoryToken = "";
 let repositoryConnection = null;
 
-if (location.hostname.endsWith(".github.io")) {
-  const ownerGuess = location.hostname.slice(0, -".github.io".length);
-  const firstPath = location.pathname.split("/").filter(Boolean)[0];
-  document.querySelector("#repoOwner").value = ownerGuess;
-  document.querySelector("#repoName").value = firstPath || (ownerGuess + ".github.io");
-}
-
 function repoStatus(message, error) {
   const output = document.querySelector("#repoStatus");
   output.textContent = message;
@@ -61,9 +54,18 @@ function encodeUtf8Base64(value) {
 }
 
 function parsePortfolioConfig(source) {
-  const match = source.match(/window\.PHOTOGRAPHY_SITE_DEFAULT\s*=\s*([\s\S]*?)\s*;\s*$/);
+  const match = source.match(/window\.(?:PHOTOGRAPHY_SITE_DEFAULT|WIKTORIA_SITE_DEFAULT)\s*=\s*([\s\S]*?)\s*;\s*$/);
   if (!match) throw new Error("The config file is not a photography portfolio site-data.js file.");
-  const value = JSON.parse(match[1]);
+  let value;
+  try {
+    value = JSON.parse(match[1]);
+  } catch (error) {
+    const legacyJson = match[1]
+      .replace(/(^|[{,]\s*)([A-Za-z_$][\w$]*)\s*:/gm, '$1"$2":')
+      .replace(/,\s*([}\]])/g, "$1");
+    try { value = JSON.parse(legacyJson); }
+    catch (legacyError) { throw new Error("The portfolio config could not be parsed. Replace it with this template's site-data.js file."); }
+  }
   if (!value || !Array.isArray(value.galleries)) throw new Error("The repository config has no gallery list.");
   return value;
 }
