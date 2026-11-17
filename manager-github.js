@@ -113,34 +113,40 @@ document.querySelector("#connectRepo").addEventListener("click", async () => {
     if (repoData.permissions && repoData.permissions.push === false) {
       throw new Error("This token can read the repository but cannot publish changes.");
     }
-    const file = await githubRequest(
-      "/repos/" + encodeURIComponent(owner) + "/" + encodeURIComponent(repo) +
-      "/contents/" + encodePath(configPath) + "?ref=" + encodeURIComponent(branch)
-    );
-    if (file.type !== "file" || !file.content) throw new Error("The config file could not be read.");
-    const remoteDraft = parsePortfolioConfig(decodeBase64Utf8(file.content));
     const configDirectory = configPath.includes("/") ? configPath.slice(0, configPath.lastIndexOf("/")) : "";
     repositoryConnection = {
       owner, repo, branch, configPath, imagePath,
       repoImageDirectory: configDirectory ? configDirectory + "/" + imagePath : imagePath
     };
-
-    let hasLocalDraft = false;
-    try { hasLocalDraft = Boolean(localStorage.getItem(KEY)); } catch (error) {}
-    if (!hasLocalDraft || confirm("Load the repository version and replace the browser draft?")) {
-      draft = mergePortfolio(remoteDraft);
-      fillProfile();
-      renderGalleries();
-    }
     document.querySelector("#loginPanel").hidden = true;
     document.querySelector("#managerApp").hidden = false;
     document.querySelector("#connectedLabel").textContent = "Connected: " + owner + "/" + repo + " · " + branch;
     document.querySelector("#managerBrand").textContent = draft.brand || "PHOTO";
-    document.querySelector("#publishRepo").disabled = false;
-    repoStatus("Connected.");
-    status("Repository connected. Edit the portfolio, then publish when ready.");
+    document.querySelector("#publishRepo").disabled = true;
+    status("Connected. Loading portfolio content…");
+    try {
+      const file = await githubRequest(
+        "/repos/" + encodeURIComponent(owner) + "/" + encodeURIComponent(repo) +
+        "/contents/" + encodePath(configPath) + "?ref=" + encodeURIComponent(branch)
+      );
+      if (file.type !== "file" || !file.content) throw new Error("The config file could not be read.");
+      const remoteDraft = parsePortfolioConfig(decodeBase64Utf8(file.content));
+      let hasLocalDraft = false;
+      try { hasLocalDraft = Boolean(localStorage.getItem(KEY)); } catch (error) {}
+      if (!hasLocalDraft || confirm("Load the repository version and replace the browser draft?")) {
+        draft = mergePortfolio(remoteDraft);
+        fillProfile();
+        renderGalleries();
+      }
+      document.querySelector("#managerBrand").textContent = draft.brand || "PHOTO";
+      document.querySelector("#publishRepo").disabled = false;
+      status("Portfolio loaded. Edit the content, then publish when ready.");
+    } catch (error) {
+      status("Logged in, but the portfolio config could not be loaded: " + error.message + " Publishing is disabled until the config is readable.", true);
+    }
   } catch (error) {
     repositoryToken = "";
+    repositoryConnection = null;
     tokenField.value = "";
     repoStatus("Could not log in: " + error.message, true);
   } finally {
