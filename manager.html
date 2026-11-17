@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <title>Owner Studio — Photography Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <style>
+    :root{--red:#e10600;--ink:#151515;--muted:#686868;--line:#dedede;--paper:#f7f7f5;--font:"Archivo","Helvetica Neue",Arial,sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.5 var(--font);-webkit-font-smoothing:antialiased}a{color:inherit}.top{height:74px;background:#111;color:#fff;padding:0 clamp(18px,4vw,56px);display:flex;align-items:center;gap:24px}.brand{font-size:20px;font-weight:900;letter-spacing:-.04em;color:var(--red);text-decoration:none}.top-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase}.top .spacer{flex:1}.preview{color:#fff;text-decoration:none;border:1px solid #777;border-radius:99px;padding:9px 15px;font-size:12px}.preview:hover{border-color:var(--red);color:#ff5a4d}
+    main{max-width:1180px;margin:0 auto;padding:60px clamp(18px,4vw,56px) 90px}.intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:38px}.eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700}.intro h1{font-size:clamp(42px,7vw,76px);line-height:.9;letter-spacing:-.06em;text-transform:uppercase;margin:14px 0 0;font-weight:900}.intro p{max-width:300px;color:var(--muted);font-size:13px;margin:0}.notice{padding:13px 16px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--red);font-size:12px;color:#555;margin-bottom:34px}.section{background:#fff;border:1px solid var(--line);padding:clamp(18px,3vw,32px);margin-bottom:24px}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding-bottom:15px;margin-bottom:22px}.section-head h2{font-size:18px;text-transform:uppercase;letter-spacing:.03em;margin:0}.section-head p{font-size:11px;color:var(--muted);margin:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label,.field-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.field input[type=text],.field input[type=email],.field input[type=password],.field input[type=url],.field textarea{width:100%;border:1px solid #ccc;background:#fff;padding:11px 12px;font:13px/1.5 var(--font);color:var(--ink);border-radius:0}.field textarea{min-height:92px;resize:vertical}.field input:focus,.field textarea:focus{outline:2px solid #e1060033;border-color:var(--red)}.muted{font-size:11px;color:var(--muted)}.image-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}.image-field{display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center}.image-field img{width:100px;height:116px;object-fit:cover;background:#ddd}.image-field.hero-preview img{width:100px;height:76px}.upload{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--ink);padding:9px 12px;cursor:pointer;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;background:#fff}.upload:hover{color:var(--red);border-color:var(--red)}input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.gallery-list{display:grid;gap:16px}.gallery-card{border:1px solid var(--line);padding:18px}.gallery-head{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end;margin-bottom:16px}.gallery-head .field{min-width:0}.gallery-head input{font-size:12px!important}.photo-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px}.photo-card{border:1px solid var(--line);padding:9px;min-width:0}.photo-card img{display:block;width:100%;height:150px;object-fit:cover;background:#eee;margin-bottom:9px}.photo-controls{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.photo-controls select{width:100%;background:#fff;border:1px solid #ccc;padding:8px;font:11px var(--font)}.small-button,.remove{border:1px solid var(--line);background:white;padding:8px 10px;font:700 10px var(--font);letter-spacing:.07em;text-transform:uppercase;cursor:pointer}.small-button:hover{border-color:var(--ink)}.remove{color:#777}.remove:hover{border-color:var(--red);color:var(--red)}.gallery-actions{display:flex;gap:10px;margin-top:14px}.add-gallery{border:1px dashed #999;background:transparent;padding:13px 16px;width:100%;font:700 11px var(--font);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.add-gallery:hover{border-color:var(--red);color:var(--red)}.actions{display:flex;align-items:center;gap:12px;position:sticky;bottom:0;background:rgba(247,247,245,.94);backdrop-filter:blur(8px);padding:14px 0;border-top:1px solid var(--line);margin-top:32px}.save{background:var(--red);color:#fff;border:0;padding:13px 20px;font:800 12px var(--font);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.save:hover{background:#b90000}.reset{background:transparent;color:#555;border:1px solid #aaa;padding:12px 16px;font:700 10px var(--font);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.status{font-size:12px;color:#287340;margin-left:auto}.status.error{color:var(--red)}
+    [hidden]{display:none!important}.social-list{display:grid;gap:10px;margin-bottom:12px}.social-row{margin:0;padding:12px;border:1px solid var(--line);grid-template-columns:1fr 1.5fr auto}#connectedNotice{display:flex;align-items:center;justify-content:space-between;gap:15px}#repoStatus{margin-bottom:0}#repoStatus.error{color:var(--red)}
+    @media(max-width:700px){main{padding-top:38px}.intro{display:block}.intro p{margin-top:18px}.form-grid,.image-fields{grid-template-columns:1fr}.gallery-head{grid-template-columns:1fr 1fr}.gallery-head .remove{grid-column:1/-1;justify-self:start}.photo-list{grid-template-columns:repeat(2,minmax(0,1fr))}.photo-card img{height:125px}.top-label{font-size:9px}.actions{flex-wrap:wrap}.status{width:100%;margin-left:0}.social-row{grid-template-columns:1fr}.social-row .remove{grid-column:auto!important}}
+  </style>
+</head>
+<body>
+  <header class="top"><a class="brand" id="managerBrand" href="index.html">PHOTO</a><span class="top-label">Owner studio</span><span class="spacer"></span><a class="preview" href="index.html">Preview portfolio ↗</a></header>
+  <main>
+    <div class="intro"><div><span class="eyebrow">Owner editing workspace</span><h1>Manage<br>your site</h1></div><p>Update the profile, swap photographs and organize the galleries that appear on the portfolio.</p></div>
+    <section class="section login-panel" id="loginPanel" aria-labelledby="loginHeading">
+      <div class="section-head"><h2 id="loginHeading">Owner login</h2><p>Connect your GitHub repository to open the manager</p></div>
+      <div class="form-grid">
+        <div class="field"><label for="repoOwner">Repository owner</label><input id="repoOwner" type="text" autocomplete="off" placeholder="github username or organization"></div>
+        <div class="field"><label for="repoName">Repository name</label><input id="repoName" type="text" autocomplete="off" placeholder="portfolio-repo"></div>
+        <div class="field"><label for="repoBranch">Branch</label><input id="repoBranch" type="text" value="main" autocomplete="off"></div>
+        <div class="field"><label for="configPath">Portfolio config path</label><input id="configPath" type="text" value="site-data.js" autocomplete="off"></div>
+        <div class="field"><label for="imagePath">Uploaded image folder</label><input id="imagePath" type="text" value="assets/uploads" autocomplete="off"></div>
+        <div class="field"><label for="repoToken">Fine-grained repo token</label><input id="repoToken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></div>
+        <div class="field full"><button class="save" id="connectRepo" type="button">Log in and open manager</button><p class="muted" id="repoStatus" role="status" aria-live="polite">Enter the repository details and token to continue.</p></div>
+      </div>
+    </section>
+
+    <div id="managerApp" hidden>
+    <div class="notice" id="connectedNotice"><span id="connectedLabel">Connected to GitHub.</span><button class="reset" id="logout" type="button">Log out</button></div>
+
+    <section class="section" aria-labelledby="profile-heading">
+      <div class="section-head"><h2 id="profile-heading">Profile</h2><p>Shown on the home and about pages</p></div>
+      <div class="form-grid">
+        <div class="field"><label for="name">Photographer / studio name</label><input id="name" type="text" maxlength="80"></div>
+        <div class="field"><label for="brand">Home wordmark</label><input id="brand" type="text" maxlength="24"></div>
+        <div class="field"><label for="tagline">Home tagline</label><input id="tagline" type="text" maxlength="100"></div>
+        <div class="field"><label for="email">Contact email</label><input id="email" type="email" maxlength="160"></div>
+        <div class="field"><label for="locationEn">Location / availability · English</label><input id="locationEn" type="text" maxlength="100"></div>
+        <div class="field"><label for="locationPl">Location / availability · Polish</label><input id="locationPl" type="text" maxlength="100"></div>
+        <div class="field"><label for="phone">Phone (optional)</label><input id="phone" type="text" maxlength="60"></div>
+        <div class="field full"><span class="field-label">Home and about photographs</span><div class="image-fields">
+          <div class="image-field hero-preview"><img id="heroPreview" alt="Home cover preview"><div><label class="upload" for="heroFile">Change cover image</label><input id="heroFile" type="file" accept="image/*"><p class="muted">Landscape works best.</p></div></div>
+          <div class="image-field"><img id="portraitPreview" alt="About portrait preview"><div><label class="upload" for="portraitFile">Change about image</label><input id="portraitFile" type="file" accept="image/*"><p class="muted">Portrait crop works best.</p></div></div>
+        </div></div>
+        <div class="field"><label for="bioEn">About text · English</label><textarea id="bioEn" maxlength="500"></textarea></div>
+        <div class="field"><label for="bioPl">About text · Polish</label><textarea id="bioPl" maxlength="500"></textarea></div>
+        <div class="field"><label for="focusEn">Practice line · English</label><input id="focusEn" type="text" maxlength="120"></div>
+        <div class="field"><label for="focusPl">Practice line · Polish</label><input id="focusPl" type="text" maxlength="120"></div>
+        <div class="field full"><span class="field-label">Social links</span><div id="socialList" class="social-list"></div><button class="small-button" id="addSocial" type="button">+ Add social link</button></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="gallery-heading">
+      <div class="section-head"><h2 id="gallery-heading">Galleries</h2><p>Each gallery becomes a page in the portfolio</p></div>
+      <div class="gallery-list" id="galleryList"></div>
+      <button class="add-gallery" id="addGallery" type="button">+ Add a gallery</button>
+    </section>
+
+    <div class="actions">
+      <button class="save" id="save" type="button">Save local draft</button>
+      <button class="save" id="publishRepo" type="button">Publish changes to GitHub</button>
+      <button class="reset" id="reset" type="button">Restore starter content</button>
+      <button class="reset" id="export" type="button">Export backup</button>
+      <label class="reset" for="importFile">Import backup</label><input id="importFile" type="file" accept="application/json">
+      <span class="status" id="status" role="status" aria-live="polite"></span>
+    </div>
+    </div>
+  </main>
+  <script src="site-data.js"></script>
+  <script>
+    const KEY="photography-portfolio-draft-v1";
+    const clone=value=>JSON.parse(JSON.stringify(value));
+    const esc=value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]));
+    let draft=clone(window.PHOTOGRAPHY_SITE_DEFAULT);
+    try{draft={...draft,...JSON.parse(localStorage.getItem(KEY)||"null")}}catch(e){}
+    const $=selector=>document.querySelector(selector);
+    const status=(message,error=false)=>{$("#status").textContent=message;$("#status").classList.toggle("error",error)};
+    function fillProfile(){
+      $("#name").value=draft.name||"";$("#brand").value=draft.brand||"";$("#tagline").value=draft.tagline||"";
+      $("#email").value=draft.email||"";$("#phone").value=draft.phone||"";
+      $("#locationEn").value=draft.location?.en||"";$("#locationPl").value=draft.location?.pl||"";
+      $("#bioEn").value=draft.bio?.en||"";$("#bioPl").value=draft.bio?.pl||"";
+      $("#focusEn").value=draft.clients?.en||"";$("#focusPl").value=draft.clients?.pl||"";
+      $("#heroPreview").src=draft.hero||"";$("#portraitPreview").src=draft.portrait||"";
+      $("#managerBrand").textContent=draft.brand||"PHOTO";
+      renderSocial();
+    }
+    function renderSocial(){
+      $("#socialList").innerHTML=(draft.social||[]).map((item,index)=>`<div class="gallery-head social-row" data-social="${index}"><div class="field"><label>Link label</label><input type="text" data-social-field="label" value="${esc(item.label)}" maxlength="30"></div><div class="field"><label>URL</label><input type="url" data-social-field="url" value="${esc(item.url)}" placeholder="https://"></div><button class="remove" type="button" data-social-action="remove">Remove</button></div>`).join("")||`<p class="muted">No social links added.</p>`;
+    }
+    function galleryMarkup(gallery,index){
+      const shots=(gallery.shots||[]).map((shot,shotIndex)=>`<article class="photo-card" data-shot="${shotIndex}">
+        <img src="${esc(shot.src)}" alt="${esc(gallery.title?.en||"Gallery")} photograph ${shotIndex+1}">
+        <div class="photo-controls"><select aria-label="Photo shape"><option value="wide" ${shot.shape==="wide"?"selected":""}>Landscape</option><option value="tall" ${shot.shape==="tall"?"selected":""}>Portrait</option><option value="" ${!shot.shape?"selected":""}>Square / crop</option></select><button class="remove" type="button" data-action="remove-shot">Remove</button></div>
+        <label class="upload" style="margin-top:8px;width:100%">Replace photo<input type="file" accept="image/*" data-action="replace-shot"></label>
+      </article>`).join("");
+      return `<section class="gallery-card" data-gallery="${index}">
+        <div class="gallery-head">
+          <div class="field"><label>Gallery title · English</label><input type="text" data-field="en" value="${esc(gallery.title?.en)}" maxlength="48"></div>
+          <div class="field"><label>Gallery title · Polish</label><input type="text" data-field="pl" value="${esc(gallery.title?.pl)}" maxlength="48"></div>
+          <button class="remove" type="button" data-action="remove-gallery">Remove gallery</button>
+        </div>
+        <div class="photo-list">${shots}</div>
+        <div class="gallery-actions"><label class="upload">+ Add photo<input type="file" accept="image/*" data-action="add-shot"></label></div>
+      </section>`;
+    }
+    function renderGalleries(){$("#galleryList").innerHTML=draft.galleries.map(galleryMarkup).join("")||`<p class="muted">No galleries yet. Add one to get started.</p>`}
+    function toDataUrl(file){
+      return new Promise((resolve,reject)=>{
+        const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{
+          const image=new Image();image.onerror=reject;image.onload=()=>{
+            const max=1800,scale=Math.min(1,max/Math.max(image.width,image.height));
+            const canvas=document.createElement("canvas");canvas.width=Math.round(image.width*scale);canvas.height=Math.round(image.height*scale);
+            canvas.getContext("2d").drawImage(image,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",.82));
+          };image.src=reader.result;
+        };reader.readAsDataURL(file);
+      });
+    }
+    async function setImage(input,target,onDone){
+      const file=input.files?.[0];if(!file)return;
+      if(!file.type.startsWith("image/")){status("Choose an image file.",true);input.value="";return}
+      status("Preparing image…");
+      try{const data=await toDataUrl(file);target(data);onDone?.();status("Image ready. Save the draft to keep it.")}
+      catch(e){status("Could not read that image.",true)}
+      input.value="";
+    }
+    fillProfile();renderGalleries();
+    $("#addSocial").addEventListener("click",()=>{draft.social=draft.social||[];draft.social.push({label:"Instagram",url:"https://"});renderSocial()});
+    $("#socialList").addEventListener("input",event=>{const row=event.target.closest("[data-social]");if(!row)return;draft.social[+row.dataset.social][event.target.dataset.socialField]=event.target.value});
+    $("#socialList").addEventListener("click",event=>{const button=event.target.closest('[data-social-action="remove"]');if(!button)return;draft.social.splice(+button.closest("[data-social]").dataset.social,1);renderSocial()});
+    $("#heroFile").addEventListener("change",event=>setImage(event.currentTarget,value=>{draft.hero=value;$("#heroPreview").src=value}));
+    $("#portraitFile").addEventListener("change",event=>setImage(event.currentTarget,value=>{draft.portrait=value;$("#portraitPreview").src=value}));
+    $("#galleryList").addEventListener("input",event=>{
+      const card=event.target.closest(".gallery-card");if(!card)return;
+      const gallery=draft.galleries[+card.dataset.gallery];gallery.title=gallery.title||{en:"",pl:""};gallery.title[event.target.dataset.field]=event.target.value;
+    });
+    $("#galleryList").addEventListener("change",async event=>{
+      const card=event.target.closest(".gallery-card");if(!card)return;
+      const gallery=draft.galleries[+card.dataset.gallery];
+      if(event.target.matches("select")){gallery.shots[+event.target.closest("[data-shot]").dataset.shot].shape=event.target.value;return}
+      const action=event.target.dataset.action;if(!action||!event.target.files?.[0])return;
+      if(action==="add-shot"){
+        await setImage(event.target,data=>{gallery.shots.push({src:data,shape:"wide"});renderGalleries()});
+      }else if(action==="replace-shot"){
+        const shot=gallery.shots[+event.target.closest("[data-shot]").dataset.shot];
+        await setImage(event.target,data=>{shot.src=data;renderGalleries()});
+      }
+    });
+    $("#galleryList").addEventListener("click",event=>{
+      const button=event.target.closest("[data-action]");if(!button)return;
+      const card=button.closest(".gallery-card"),galleryIndex=+card.dataset.gallery,action=button.dataset.action;
+      if(action==="remove-shot"){draft.galleries[galleryIndex].shots.splice(+button.closest("[data-shot]").dataset.shot,1);renderGalleries()}
+      if(action==="remove-gallery"){draft.galleries.splice(galleryIndex,1);renderGalleries()}
+    });
+    $("#addGallery").addEventListener("click",()=>{
+      const n=draft.galleries.length+1;draft.galleries.push({id:`gallery-${Date.now()}`,title:{en:`New gallery ${n}`,pl:`Nowa galeria ${n}`},shots:[]});renderGalleries();status("Gallery added. Add a title and photographs.");
+    });
+    function collectProfile(){
+      draft.name=$("#name").value.trim()||"Photographer Name";
+      draft.brand=$("#brand").value.trim()||"YOUR NAME";draft.tagline=$("#tagline").value.trim();draft.email=$("#email").value.trim();draft.phone=$("#phone").value.trim();
+      draft.location={en:$("#locationEn").value.trim(),pl:$("#locationPl").value.trim()};
+      draft.bio={en:$("#bioEn").value.trim(),pl:$("#bioPl").value.trim()};
+      draft.clients={en:$("#focusEn").value.trim(),pl:$("#focusPl").value.trim()};
+      draft.galleries.forEach((gallery,index)=>{gallery.id=`${(gallery.title.en||`gallery-${index+1}`).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}-${index+1}`});
+    }
+    $("#save").addEventListener("click",()=>{
+      collectProfile();
+      try{localStorage.setItem(KEY,JSON.stringify(draft));status("Draft saved in this browser.")}
+      catch(e){status("Storage is full. Remove a few photos or export a smaller draft.",true)}
+    });
+    $("#reset").addEventListener("click",()=>{
+      if(!confirm("Restore the starter portfolio and remove this browser's saved draft? Export a backup first if you want to keep it."))return;
+      localStorage.removeItem(KEY);draft=clone(window.PHOTOGRAPHY_SITE_DEFAULT);fillProfile();renderGalleries();status("Starter content restored. Save to keep it as your local draft.");
+    });
+    $("#export").addEventListener("click",()=>{
+      collectProfile();const blob=new Blob([JSON.stringify(draft,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const link=document.createElement("a");link.href=url;link.download="photography-portfolio-backup.json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status("Backup exported.");
+    });
+    $("#importFile").addEventListener("change",async event=>{
+      const file=event.target.files?.[0];if(!file)return;
+      try{const imported=JSON.parse(await file.text());if(!imported||!Array.isArray(imported.galleries))throw new Error("bad backup");draft={...clone(window.PHOTOGRAPHY_SITE_DEFAULT),...imported};fillProfile();renderGalleries();status("Backup loaded. Save the draft to apply it.")}
+      catch(e){status("That backup file could not be read.",true)}
+      event.target.value="";
+    });
+  </script>
+  <script src="manager-github.js"></script>
+</body>
+</html>

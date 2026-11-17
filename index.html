@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Photography Portfolio Template</title>
+<meta name="description" content="Photography portfolio template.">
+<meta property="og:title" content="Photography Portfolio">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+:root{--red:#E10600;--ink:#111;--bg:#fff;--muted:#6b6b6b;--line:#e6e6e6;--f:"Archivo","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 var(--f);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.view{display:none}.view.on{display:block}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:10;padding:calc(.9rem + env(safe-area-inset-top,0px)) clamp(1rem,3vw,2.2rem) .9rem;display:flex;align-items:center;gap:1.6rem;color:#fff;transition:background .2s,color .2s}
+body:not([data-v="home"]) nav{background:var(--bg);color:var(--ink);border-bottom:1px solid var(--line)}
+nav .b{font-weight:900;font-stretch:125%;letter-spacing:-.02em;font-size:1.3rem;color:var(--red);text-decoration:none;margin-right:auto}
+nav .links{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:flex-end}
+nav a.l{text-decoration:none;font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+nav a.l:hover,nav a.l.cur{color:var(--red)}
+nav .lang{background:none;border:1px solid currentColor;border-radius:99px;font-size:.75rem;font-weight:700;padding:.15rem .6rem;cursor:pointer}
+body[data-v="home"][data-scrolled="true"] nav{background:var(--bg);color:var(--ink);border-bottom:1px solid var(--line)}
+@media (max-width:760px){nav{flex-wrap:wrap;gap:.5rem 1rem}nav .links{order:3;width:100%;justify-content:flex-start;gap:.4rem 1.1rem}}
+
+/* hero */
+.hero{position:relative;height:100svh;min-height:32rem;background:#1b1b1b;overflow:hidden;display:flex;align-items:flex-end}
+.hero .bg{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 20%,#4a4a4a,#161616 70%)}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.hero .hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#ffffff55;font-size:.9rem;text-align:center;max-width:16rem}
+.hero svg{position:relative;width:100%;height:auto;display:block;padding:0 clamp(.5rem,2vw,1.5rem) .4rem}
+.hero text{fill:var(--red);font-family:var(--f);font-weight:900;font-stretch:125%}
+.hero .tag{position:absolute;left:clamp(1rem,3vw,2.2rem);bottom:calc(100vw*.3);color:#fff;font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.hero .bg{will-change:transform}.hero svg{will-change:transform;transition:transform .12s linear}.hero .bg img{transform:scale(1.05);will-change:transform}
+
+/* index of galleries */
+.index{max-width:80rem;margin:0 auto;padding:clamp(2rem,6vw,5rem) clamp(1rem,3vw,2.2rem)}
+.index a{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding:1.1rem 0;border-top:2px solid var(--ink);text-decoration:none;font-weight:900;font-stretch:110%;font-size:clamp(2.2rem,9vw,6.5rem);line-height:1;letter-spacing:-.03em;text-transform:uppercase}
+.index a:last-child{border-bottom:2px solid var(--ink)}
+.index a small{font-size:.9rem;font-weight:600;letter-spacing:.04em;color:var(--muted);font-stretch:100%}
+.index a:hover{color:var(--red);padding-left:1rem}
+.index a{transition:padding .2s,color .2s}
+
+/* gallery / pages */
+.page{max-width:80rem;margin:0 auto;padding:calc(6rem + env(safe-area-inset-top,0px)) clamp(1rem,3vw,2.2rem) 3rem}
+h1{margin:0 0 2rem;color:var(--red);font-weight:900;font-stretch:115%;font-size:clamp(2.8rem,12vw,9rem);line-height:.9;letter-spacing:-.04em;text-transform:uppercase}
+.shots{display:grid;gap:clamp(.7rem,1.6vw,1.2rem)}
+.shot{display:block;width:100%;padding:0;border:0;cursor:zoom-in;background:var(--tile);aspect-ratio:3/2;position:relative;overflow:hidden}
+.shot.tall{aspect-ratio:4/5}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot img{transform:translate3d(0,var(--shot-shift,0px),0) scale(1.055);will-change:transform}
+.shot b{position:absolute;left:1rem;bottom:.7rem;color:#ffffffaa;font-size:.85rem;font-weight:700}
+@media (min-width:900px){.shots{grid-template-columns:repeat(2,1fr)}.shot.wide{grid-column:1/-1;aspect-ratio:16/8}}
+.about{display:grid;grid-template-columns:1fr 1.3fr;gap:2rem 4rem;align-items:start}
+.about .pt{aspect-ratio:4/5;background:linear-gradient(160deg,#444,#161616);overflow:hidden}
+.about .pt img{width:100%;height:100%;object-fit:cover;display:block}
+.about p{font-size:clamp(1.15rem,2vw,1.6rem);line-height:1.45;margin:0 0 1rem;max-width:36rem;font-weight:500}
+.clients{color:var(--muted);font-size:.95rem}
+@media (max-width:760px){.about{grid-template-columns:1fr}.about .pt{max-width:20rem}}
+.big{display:inline-block;font-weight:800;font-stretch:110%;font-size:clamp(1.4rem,5.5vw,4rem);letter-spacing:-.03em;text-decoration:none;border-bottom:4px solid var(--red);overflow-wrap:anywhere}
+.big:hover{color:var(--red)}
+
+footer{border-top:2px solid var(--ink);margin:2rem clamp(1rem,3vw,2.2rem) 0;padding:1.4rem 0 calc(2rem + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;gap:1rem 3rem;justify-content:space-between;font-size:.92rem}
+footer h4{margin:0 0 .2rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+footer p{margin:0}
+
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:20;background:#000e;display:none;align-items:center;justify-content:center}
+#lb.on{display:flex}
+#lb .im{width:min(92vw,70rem);max-height:84vh;aspect-ratio:3/2;background:var(--tile);display:flex}
+#lb .im img{width:100%;height:100%;object-fit:contain}
+#lb button{position:absolute;background:none;border:0;color:#fff;font-size:1.4rem;cursor:pointer;padding:1rem;font-weight:700}
+#lb .x{top:calc(.5rem + env(safe-area-inset-top,0px));right:.5rem}#lb .p{left:.3rem}#lb .n{right:.3rem}
+#lb .c{position:absolute;bottom:1rem;color:#fff9;font-size:.85rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){.hero .bg,.hero svg,.hero .bg img,.shot img{transform:none!important;will-change:auto}}
+</style>
+</head>
+<body data-v="home">
+
+<nav>
+  <a class="b" href="#home" id="brandSm"></a>
+  <div class="links" id="links"></div>
+  <button class="lang" id="lang" aria-label="Language">PL</button>
+</nav>
+
+<main>
+  <section class="view" id="v-home">
+    <div class="hero">
+      <div class="bg" id="heroBg"></div>
+      <span class="hint" id="hint"></span>
+      <span class="tag" id="heroTag"></span>
+      <svg viewBox="0 0 400 118" aria-label="Photographer name" role="img"><text id="wm" x="0" y="112" font-size="150" textLength="400" lengthAdjust="spacingAndGlyphs"></text></svg>
+    </div>
+    <div class="index" id="index"></div>
+  </section>
+
+  <section class="view" id="v-gal"><div class="page"><h1 id="gt"></h1><div class="shots" id="shots"></div></div></section>
+
+  <section class="view" id="v-about"><div class="page">
+    <h1 data-i="about"></h1>
+    <div class="about"><div class="pt" id="pt"></div><div><p id="bio"></p><p class="clients" id="clients"></p></div></div>
+  </div></section>
+
+  <section class="view" id="v-contact"><div class="page">
+    <h1 data-i="contact"></h1>
+    <p style="font-size:1.2rem;max-width:34rem;margin:0 0 1.5rem" data-i="cp"></p>
+    <a class="big" id="mail" href="#"></a>
+  </div></section>
+</main>
+
+<footer>
+  <div><h4 data-i="contact"></h4><p><a id="fmail" href="#"></a></p><p id="fphone"></p></div>
+  <div><h4 data-i="rep"></h4><p id="frep"></p></div>
+  <div><h4>Social</h4><p id="fsoc"></p></div>
+  <div><p>© 2026 <span id="copyrightName"></span></p><p><a class="owner-link" href="manager.html">Manage</a></p></div>
+</footer>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="x" aria-label="Close">✕</button><button class="p" aria-label="Previous">←</button>
+  <div class="im" id="lbim"></div><button class="n" aria-label="Next">→</button><span class="c" id="lbc"></span>
+</div>
+
+<script src="site-data.js"></script>
+<script>
+const SITE_DEFAULT = window.PHOTOGRAPHY_SITE_DEFAULT;
+const SITE_KEY="photography-portfolio-draft-v1";
+function loadSite(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(SITE_KEY)||"null");
+    if(!saved)return SITE_DEFAULT;
+    return {...SITE_DEFAULT,...saved,bio:{...SITE_DEFAULT.bio,...saved.bio},location:{...SITE_DEFAULT.location,...saved.location},galleries:saved.galleries||SITE_DEFAULT.galleries};
+  }catch(e){return SITE_DEFAULT}
+}
+let SITE=loadSite();
+const UI = {
+  en:{about:"About",contact:"Contact",cp:"For commissions, collaborations or project enquiries, write a note.",rep:"Based in",hint:"Portrait · Fashion · Stories",n:n=>n+(n===1?" image":" images")},
+  pl:{about:"O mnie",contact:"Kontakt",cp:"W sprawie zleceń, współpracy lub nowych projektów napisz.",rep:"Miejsce",hint:"Portret · Moda · Historie",n:n=>n+(n===1?" zdjęcie":" zdjęć")}
+};
+
+const $=s=>document.querySelector(s);
+let lang=(()=>{try{return localStorage.getItem("lang")}catch(e){return null}})()||((navigator.language||"").slice(0,2)==="pl"?"pl":"en");
+const tile=i=>{const g=[["#E10600","#7a0300"],["#2b2b2b","#111"],["#c9c9c9","#8a8a8a"],["#ff5a4d","#E10600"]][i%4];return `linear-gradient(135deg,${g[0]},${g[1]})`};
+let cur=null,idx=0;
+
+function build(){
+  const t=UI[lang];
+  document.title=`${SITE.name||"Photography Portfolio"} — Photographer`;
+  document.querySelector('meta[property="og:title"]').content=SITE.name||"Photography Portfolio";
+  document.querySelector('meta[name="description"]').content=SITE.tagline||"Photography portfolio.";
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t[e.dataset.i]);
+  $("#brandSm").textContent=SITE.brand;
+  $("#wm").textContent=SITE.brand;
+  $(".hero svg").setAttribute("aria-label",SITE.name||SITE.brand);
+  $("#heroTag").textContent=SITE.tagline||t.hint;
+  $("#copyrightName").textContent=SITE.name||SITE.brand;
+  $("#lang").textContent=lang==="en"?"PL":"EN";
+  $("#links").innerHTML=SITE.galleries.map(g=>`<a class="l" href="#${g.id}" data-h="${g.id}">${g.title[lang]}</a>`).join("")+`<a class="l" href="#about" data-h="about">${t.about}</a><a class="l" href="#contact" data-h="contact">${t.contact}</a>`;
+  $("#index").innerHTML=SITE.galleries.map(g=>`<a href="#${g.id}">${g.title[lang]}<small>${t.n(g.shots.length)}</small></a>`).join("");
+  $("#heroBg").innerHTML=SITE.hero?`<img src="${SITE.hero}" alt="${SITE.name||SITE.brand} — cover photograph">`:"";
+  $("#hint").textContent=SITE.hero?"":t.hint;
+  $("#pt").innerHTML=SITE.portrait?`<img src="${SITE.portrait}" alt="Portrait of ${SITE.name||SITE.brand}">`:"";
+  $("#bio").textContent=SITE.bio[lang]; $("#clients").textContent=SITE.clients[lang];
+  $("#mail").textContent=$("#fmail").textContent=SITE.email||"your@email.com";
+  $("#mail").href=$("#fmail").href=SITE.email?"mailto:"+SITE.email:"#contact";
+  $("#fphone").textContent=SITE.phone; $("#frep").textContent=SITE.location?.[lang]||SITE.location?.en||"";
+  $("#fphone").hidden=!SITE.phone;
+  $("#frep").closest("div").hidden=!SITE.location?.[lang]&&!SITE.location?.en;
+  $("#fsoc").closest("div").hidden=!SITE.social.length;
+  $("#fsoc").innerHTML=SITE.social.map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join(", ");
+  route();
+}
+
+function route(){
+  const h=(location.hash||"#home").slice(1);
+  const g=SITE.galleries.find(x=>x.id===h);
+  const v=g?"gal":["about","contact"].includes(h)?h:"home";
+  document.querySelectorAll(".view").forEach(e=>e.classList.toggle("on",e.id==="v-"+v));
+  document.body.dataset.v=v;
+  document.querySelectorAll("nav a.l").forEach(a=>a.classList.toggle("cur",a.dataset.h===h));
+  if(g){
+    cur=g; $("#gt").textContent=g.title[lang];
+    $("#shots").innerHTML=g.shots.map((s,i)=>`<button class="shot ${s.shape||""}" data-s="${i}" style="--tile:${tile(i)}" aria-label="${g.title[lang]} ${i+1}">${s.src?`<img src="${s.src}" alt="${g.title[lang]} ${i+1}" loading="lazy">`:`<b>${String(i+1).padStart(2,"0")}</b>`}</button>`).join("");
+  }
+  scrollTo(0,0);
+}
+
+function show(i){
+  const n=cur.shots.length; idx=(i+n)%n; const s=cur.shots[idx];
+  $("#lbim").style.setProperty("--tile",tile(idx));
+  $("#lbim").innerHTML=s.src?`<img src="${s.src}" alt="">`:"";
+  $("#lbc").textContent=`${idx+1} / ${n}`;
+  $("#lb").classList.add("on");
+}
+const close=()=>$("#lb").classList.remove("on");
+document.addEventListener("click",e=>{
+  const s=e.target.closest("[data-s]"); if(s)return show(+s.dataset.s);
+  if(e.target.closest("#lb .x")||e.target.id==="lb")close();
+  if(e.target.closest("#lb .p"))show(idx-1);
+  if(e.target.closest("#lb .n"))show(idx+1);
+});
+addEventListener("keydown",e=>{if(!$("#lb").classList.contains("on"))return;
+  if(e.key==="Escape")close(); if(e.key==="ArrowLeft")show(idx-1); if(e.key==="ArrowRight")show(idx+1);});
+$("#lang").onclick=()=>{lang=lang==="en"?"pl":"en";try{localStorage.setItem("lang",lang)}catch(e){} build();};
+addEventListener("hashchange",route);
+const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let motionPending=false;
+function updateScrollMotion(){
+  motionPending=false;
+  document.body.dataset.scrolled=String(scrollY>48);
+  if(reduceMotion)return;
+  const hero=document.querySelector(".hero"), bg=document.querySelector("#heroBg"), wordmark=document.querySelector(".hero svg");
+  if(hero&&bg&&wordmark){
+    const progress=Math.max(0,Math.min(1,-hero.getBoundingClientRect().top/innerHeight));
+    bg.style.transform=`translate3d(0,${progress*38}px,0) scale(${1+progress*.045})`;
+    wordmark.style.transform=`translate3d(0,${progress*-22}px,0)`;
+  }
+  document.querySelectorAll(".shot img").forEach(img=>{
+    const rect=img.getBoundingClientRect();
+    const relative=Math.max(-1,Math.min(1,(rect.top+rect.height/2-innerHeight/2)/(innerHeight*.85)));
+    img.style.setProperty("--shot-shift",`${relative*-18}px`);
+  });
+}
+function queueScrollMotion(){if(!motionPending){motionPending=true;requestAnimationFrame(updateScrollMotion)}}
+addEventListener("scroll",queueScrollMotion,{passive:true});
+addEventListener("resize",queueScrollMotion,{passive:true});
+build();
+queueScrollMotion();
+</script>
+</body>
+</html>
