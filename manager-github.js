@@ -1,4 +1,5 @@
 const GITHUB_API = "https://api.github.com";
+const REPOSITORY_DEFAULTS = Object.freeze({ branch: "main", configPath: "site-data.js", imagePath: "assets/uploads" });
 let repositoryToken = "";
 let repositoryConnection = null;
 
@@ -92,17 +93,11 @@ function mergePortfolio(remote) {
 document.querySelector("#connectRepo").addEventListener("click", async () => {
   const owner = document.querySelector("#repoOwner").value.trim();
   const repo = document.querySelector("#repoName").value.trim();
-  const branch = document.querySelector("#repoBranch").value.trim();
+  const branch = REPOSITORY_DEFAULTS.branch;
   const tokenField = document.querySelector("#repoToken");
   const token = tokenField.value.trim();
-  let configPath, imagePath;
-  try {
-    configPath = cleanPath(document.querySelector("#configPath").value);
-    imagePath = cleanPath(document.querySelector("#imagePath").value);
-  } catch (error) {
-    repoStatus(error.message, true);
-    return;
-  }
+  const configPath = cleanPath(REPOSITORY_DEFAULTS.configPath);
+  const imagePath = cleanPath(REPOSITORY_DEFAULTS.imagePath);
   if (!/^[A-Za-z0-9_.-]+$/.test(owner) || !/^[A-Za-z0-9_.-]+$/.test(repo) || !branch || !token) {
     repoStatus("Enter a valid owner, repository, branch, and token.", true);
     return;
