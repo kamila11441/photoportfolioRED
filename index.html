@@ -142,13 +142,13 @@ function loadSite(){
 }
 let SITE=loadSite();
 const UI = {
-  en:{about:"About",contact:"Contact",cp:"For commissions, collaborations or project enquiries",rep:"Based in",hint:"Portrait · Fashion · Stories",n:n=>n+(n===1?" image":" images")},
-  pl:{about:"O mnie",contact:"Kontakt",cp:"W sprawie zleceń, współpracy lub nowych projektów",rep:"Miejsce",hint:"Portret · Moda · Historie",n:n=>n+(n===1?" zdjęcie":" zdjęć")}
+  en:{about:"About",contact:"Contact",cp:"For commissions, collaborations or project enquiries, write a note.",rep:"Based in",hint:"Portrait · Fashion · Stories",n:n=>n+(n===1?" image":" images")},
+  pl:{about:"O mnie",contact:"Kontakt",cp:"W sprawie zleceń, współpracy lub nowych projektów napisz.",rep:"Miejsce",hint:"Portret · Moda · Historie",n:n=>n+(n===1?" zdjęcie":" zdjęć")}
 };
 
 const $=s=>document.querySelector(s);
 let lang=(()=>{try{return localStorage.getItem("lang")}catch(e){return null}})()||((navigator.language||"").slice(0,2)==="pl"?"pl":"en");
-const tile=i=>{const g=[["#E10600","#7a0300"],["#2b2b2b","#111"],["#c9c9c9","#8a8a8a"],["#ff5a4d","#E10600"]][i%4];return `linear-gradient(135deg,${g[0]},${g[1]})`};
+const tile=()=>"#e5e5e2";
 let cur=null,idx=0;
 
 function build(){
