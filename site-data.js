@@ -21,16 +21,16 @@ window.PHOTOGRAPHY_SITE_DEFAULT = {
   },
   "galleries": [
     {
-      "id": "project-1-1",
+      "id": "placeholder-1",
       "title": {
-        "en": "Project 1",
-        "pl": "Projekt 1",
-        "undefined": ""
+        "en": "Placeholder",
+        "pl": "Placeholder",
+        "undefined": "tall"
       },
       "shots": [
         {
           "src": "assets/uploads/photographer-name-1795124851039-3.jpg",
-          "shape": ""
+          "shape": "tall"
         },
         {
           "src": "assets/uploads/photographer-name-1795124851039-4.jpg",
@@ -100,7 +100,7 @@ window.PHOTOGRAPHY_SITE_DEFAULT = {
       "shots": [
         {
           "src": "assets/uploads/photographer-name-1795124851039-13.jpg",
-          "shape": "tall"
+          "shape": ""
         },
         {
           "src": "assets/uploads/photographer-name-1795124851039-14.jpg",
